@@ -173,4 +173,3 @@ export const AnimatePresence: React.FC<AnimatePresenceProps> = ({ children, show
 
   return shouldRender ? <div style={style}>{children}</div> : null
 }
-

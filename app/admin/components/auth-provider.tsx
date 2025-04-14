@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabase"
 import AuthForm from "./auth-form"
 import PlansManager from "./plans-manager"
+import type { AuthChangeEvent } from "@/lib/types"
 
 export default function AuthProvider() {
   const [session, setSession] = useState<any>(null)
@@ -35,7 +36,7 @@ export default function AuthProvider() {
     // Configurar listener para mudanças de autenticação
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session) => {
       setSession(session)
     })
 
@@ -65,4 +66,3 @@ export default function AuthProvider() {
 
   return session ? <PlansManager /> : <AuthForm />
 }
-
